@@ -1,14 +1,16 @@
 package itesm.mx.listacontactos;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ExpandableListView.OnChildClickListener{
 
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
@@ -30,6 +32,18 @@ public class MainActivity extends AppCompatActivity {
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
+
+        expListView.setOnChildClickListener(this);
+
+
+    }
+
+    @Override
+    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+        Intent intent;
+        intent = new Intent(MainActivity.this, ContactDetails.class);
+        startActivity(intent);
+        return false;
     }
 
     private void prepareListData() {
@@ -70,4 +84,6 @@ public class MainActivity extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(1), nowShowing);
         listDataChild.put(listDataHeader.get(2), comingSoon);
     }
+
+
 }

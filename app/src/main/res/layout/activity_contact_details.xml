@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="itesm.mx.listacontactos.ContactDetails">
+
+    <TextView
+        android:id="@+id/textContactName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_weight="1"
+        android:text="Nombre Contacto"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/background_dark"
+        android:textColorLink="@android:color/background_dark" />
+
+    <ImageView
+        android:id="@+id/imageContactPhoto"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/placeholder" />
+
+    <TextView
+        android:id="@+id/textPhonenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="# telefono"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_below="@+id/textContactName"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/buttonCall"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignStart="@+id/button2"
+        android:layout_below="@+id/button2"
+        android:layout_marginTop="11dp"
+        android:background="@android:color/holo_red_light"
+        android:elevation="0dp"
+        android:text="mensaje"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/textPhonenumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/holo_green_light"
+        android:elevation="0dp"
+        android:text="marcar"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+</RelativeLayout>
