@@ -34,10 +34,10 @@
         android:textSize="24sp"
         tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="184dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="63dp"
         android:layout_below="@+id/buttonAdd"
-        android:layout_alignLeft="@+id/buttonAdd"
-        android:layout_alignStart="@+id/buttonAdd" />
+        android:layout_alignLeft="@+id/buttonDelete"
+        android:layout_alignStart="@+id/buttonDelete" />
 
     <Button
         android:id="@+id/buttonAdd"
