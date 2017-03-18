@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="itesm.mx.listacontactos.SettingsActivity">
+
+    <Button
+        android:id="@+id/buttonDelete"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:background="@android:color/holo_red_light"
+        android:elevation="0dp"
+        android:text="borrar contacto"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="295dp"
+        android:layout_below="@+id/buttonEdit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp" />
+
+    <Button
+        android:id="@+id/buttonEdit"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:background="@android:color/holo_blue_dark"
+        android:elevation="0dp"
+        android:text="editar contacto"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="184dp"
+        android:layout_marginTop="55dp"
+        android:layout_below="@+id/buttonAdd"
+        android:layout_alignLeft="@+id/buttonAdd"
+        android:layout_alignStart="@+id/buttonAdd" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:background="@android:color/holo_green_light"
+        android:elevation="0dp"
+        android:text="agregar contacto"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/buttonDelete"
+        android:layout_alignStart="@+id/buttonDelete"
+        android:layout_marginTop="44dp" />
+</RelativeLayout>
