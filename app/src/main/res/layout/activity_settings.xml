@@ -18,9 +18,9 @@
         android:textSize="24sp"
         tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="295dp"
+        android:layout_marginTop="100dp"
         android:layout_below="@+id/buttonEdit"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/buttonEdit"
@@ -34,7 +34,7 @@
         android:textSize="24sp"
         tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="184dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="75dp"
         android:layout_below="@+id/buttonAdd"
         android:layout_alignLeft="@+id/buttonAdd"
         android:layout_alignStart="@+id/buttonAdd" />

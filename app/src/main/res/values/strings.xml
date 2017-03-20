@@ -1,6 +1,21 @@
 <resources>
     <string name="app_name">ListaContactos</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="preference_file_key">itesm.mx.listacontactos</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="confirmar_contrasena">Confirmar Contraseña</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="nombre_contacto">Nombre</string>
+    <string name="numero_contacto">Número</string>
+    <string name="agregar_contacto_titulo">Agregar Contacto</string>
+    <string name="categoria">Categoria</string>
+    <string name="agregar_contacto">Agregar</string>
+    <string-array name= "array_categorias">
+        <item>Familiares</item>
+        <item>Amigos</item>
+        <item>Servicios de emergencias</item>
+    </string-array>
+
 
     <!-- Strings related to Settings -->
 
