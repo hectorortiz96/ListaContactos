@@ -30,6 +30,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         btnBorrarContacto =  (Button) findViewById(R.id.buttonDelete);
 
         btnAgregarContacto.setOnClickListener(this);
+        btnBorrarContacto.setOnClickListener(this);
+        btnModificarContacto.setOnClickListener(this);
 
     }
 
@@ -50,9 +52,18 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v){
 
-        if (true) {
+        if (v.getId() == R.id.buttonAdd) {
             Intent intent = new Intent(this, AgregarActivity.class);
             startActivityForResult(intent, REQUEST_AGREGAR);
         }
+        else if(v.getId() == R.id.buttonDelete){
+            Intent intent = new Intent(this, EliminarActivity.class);
+            startActivityForResult(intent, REQUEST_BORRAR);
+        }
+        else if (v.getId() == R.id.buttonEdit){
+
+
+        }
+
     }
 }
