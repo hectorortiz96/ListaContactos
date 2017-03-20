@@ -10,7 +10,7 @@
     <string name="agregar_contacto_titulo">Agregar Contacto</string>
     <string name="categoria">Categoria</string>
     <string name="agregar_contacto">Agregar</string>
-    <string-array name= "array_categorias">
+    <string-array name="array_categorias">
         <item>Familiares</item>
         <item>Amigos</item>
         <item>Servicios de emergencias</item>
