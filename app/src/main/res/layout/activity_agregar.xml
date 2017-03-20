@@ -6,86 +6,112 @@
     android:layout_height="match_parent"
     tools:context="itesm.mx.listacontactos.AgregarActivity">
 
-    <TextView
-        android:id="@+id/textView_agregar_contacto_titulo"
-        android:layout_width="244dp"
-        android:layout_height="36dp"
-        android:text="@string/agregar_contacto_titulo"
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="44dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/imageButton_elige_imagen"
-        android:layout_alignStart="@+id/imageButton_elige_imagen"
-        android:layout_marginTop="23dp" />
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="50dp">
 
-    <EditText
-        android:id="@+id/editText_nombre_contacto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/nombre_contacto"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="97dp"
-        android:layout_above="@+id/editText_numero_contacto"
-        android:layout_alignLeft="@+id/editText_numero_contacto"
-        android:layout_alignStart="@+id/editText_numero_contacto"
-        android:layout_marginBottom="17dp" />
+        <TextView
+            android:id="@+id/textView_agregar_contacto_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageButton_elige_imagen"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/imageButton_elige_imagen"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="0dp"
+            android:text="@string/agregar_contacto_titulo"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            tools:layout_editor_absoluteX="85dp"
+            tools:layout_editor_absoluteY="44dp" />
 
-    <EditText
-        android:id="@+id/editText_numero_contacto"
-        android:hint="@string/numero_contacto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="149dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_above="@+id/spinner_categoria"
-        android:layout_alignLeft="@+id/imageButton_elige_imagen"
-        android:layout_alignStart="@+id/imageButton_elige_imagen"
-        android:layout_marginBottom="18dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
 
-    <ImageButton
-        android:id="@+id/imageButton_elige_imagen"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@drawable/camera"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="267dp"
-        android:layout_above="@+id/button_agregar_contacto"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp" />
+        <EditText
+            android:id="@+id/editText_nombre_contacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editText_numero_contacto"
+            android:layout_alignLeft="@+id/editText_numero_contacto"
+            android:layout_alignStart="@+id/editText_numero_contacto"
+            android:layout_marginBottom="0dp"
+            android:ems="10"
+            android:hint="@string/nombre_contacto"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="85dp"
+            tools:layout_editor_absoluteY="97dp" />
 
-    <ImageView
-        android:id="@+id/imageView_agregar"
-        android:layout_width="49dp"
-        android:layout_height="42dp"
-        app:srcCompat="@android:drawable/ic_input_add"
-        tools:layout_editor_absoluteY="38dp"
-        tools:layout_editor_absoluteX="36dp"
-        android:layout_alignTop="@+id/textView_agregar_contacto_titulo"
-        android:layout_toLeftOf="@+id/textView_agregar_contacto_titulo"
-        android:layout_toStartOf="@+id/textView_agregar_contacto_titulo"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
 
-    <Spinner
-        android:id="@+id/spinner_categoria"
-        android:layout_width="159dp"
-        android:layout_height="35dp"
-        tools:layout_editor_absoluteY="208dp"
-        tools:layout_editor_absoluteX="170dp"
-        android:layout_marginBottom="22dp"
-        android:layout_above="@+id/imageButton_elige_imagen"
-        android:layout_toRightOf="@+id/textView_categoria"
-        android:layout_toEndOf="@+id/textView_categoria"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp" />
+        <EditText
+            android:id="@+id/editText_numero_contacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/spinner_categoria"
+            android:layout_alignLeft="@+id/imageButton_elige_imagen"
+            android:layout_alignStart="@+id/imageButton_elige_imagen"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:ems="10"
+            android:hint="@string/numero_contacto"
+            android:inputType="phone"
+            tools:layout_editor_absoluteX="85dp"
+            tools:layout_editor_absoluteY="149dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <TextView
+            android:id="@+id/textView_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/spinner_categoria"
+            android:layout_alignLeft="@+id/editText_numero_contacto"
+            android:layout_alignStart="@+id/editText_numero_contacto"
+            android:text="@string/categoria"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="85dp"
+            tools:layout_editor_absoluteY="221dp" />
+
+        <Spinner
+            android:id="@+id/spinner_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_above="@+id/imageButton_elige_imagen"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_toEndOf="@+id/textView_categoria"
+            android:layout_toRightOf="@+id/textView_categoria"
+            tools:layout_editor_absoluteX="170dp"
+            tools:layout_editor_absoluteY="208dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:background="@drawable/camera" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_agregar_contacto"
@@ -95,20 +121,8 @@
         android:text="@string/agregar_contacto"
         tools:layout_editor_absoluteX="135dp"
         tools:layout_editor_absoluteY="441dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/linearLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="19dp" />
-
-    <TextView
-        android:id="@+id/textView_categoria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/categoria"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="221dp"
-        android:layout_alignBottom="@+id/spinner_categoria"
-        android:layout_alignLeft="@+id/editText_numero_contacto"
-        android:layout_alignStart="@+id/editText_numero_contacto" />
+        android:layout_marginTop="35dp" />
 
 </RelativeLayout>
