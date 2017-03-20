@@ -49,6 +49,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v){
+
         if (true) {
             Intent intent = new Intent(this, AgregarActivity.class);
             startActivityForResult(intent, REQUEST_AGREGAR);

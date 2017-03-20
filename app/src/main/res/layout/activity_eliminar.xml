@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="itesm.mx.listacontactos.EliminarActivity">
+
+    <TextView
+        android:id="@+id/Eliminar_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eliminar Contacto:"
+        android:textSize="30dp"
+        android:textColor="@android:color/background_dark" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Manuel"
+        android:textSize="18dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oxxo"
+        android:textSize="18dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Doctor"
+        android:textSize="18dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hijo"
+        android:textSize="18dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nieta"
+        android:textSize="18dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beatriz"
+        android:textSize="18dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <Button
+        android:id="@+id/button_eliminar"
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="Eliminar"
+        android:layout_marginTop="45dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/holo_red_light" />
+
+</LinearLayout>
