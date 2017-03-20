@@ -54,7 +54,7 @@
         android:id="@+id/imageButton_elige_imagen"
         android:layout_width="217dp"
         android:layout_height="160dp"
-        app:srcCompat="@mipmap/ic_launcher"
+        android:background="@drawable/camera"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="267dp"
         android:layout_above="@+id/button_agregar_contacto"
