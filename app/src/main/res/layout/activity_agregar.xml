@@ -52,8 +52,8 @@
 
     <ImageButton
         android:id="@+id/imageButton_elige_imagen"
-        android:layout_width="217dp"
-        android:layout_height="160dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:background="@drawable/camera"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="267dp"
