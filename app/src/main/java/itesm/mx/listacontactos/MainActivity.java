@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
         Intent intent;
         intent = new Intent(MainActivity.this, ContactDetails.class);
+        String nombre = (String)parent.getExpandableListAdapter().getChild(groupPosition, childPosition);
+        intent.putExtra("Nombre",nombre);
         startActivity(intent);
         return false;
     }
