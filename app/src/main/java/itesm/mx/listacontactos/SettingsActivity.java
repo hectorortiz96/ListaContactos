@@ -61,8 +61,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             startActivityForResult(intent, REQUEST_BORRAR);
         }
         else if (v.getId() == R.id.buttonEdit){
-
-
+            Intent intent = new Intent(this, EditarActivity.class);
+            startActivityForResult(intent,REQUEST_MODIFICAR);
         }
 
     }
