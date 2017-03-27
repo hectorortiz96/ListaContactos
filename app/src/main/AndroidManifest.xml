@@ -31,7 +31,8 @@
         </activity>
         <activity android:name=".PermisosActivity" />
         <activity android:name=".AgregarActivity" />
-        <activity android:name=".EliminarActivity"></activity>
+        <activity android:name=".EliminarActivity" />
+        <activity android:name=".EditarActivity"></activity>
     </application>
 
 </manifest>
