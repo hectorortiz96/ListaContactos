@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="@android:color/holo_orange_dark"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.09"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:clickable="false"/>
+
+    <TextView
+        android:id="@+id/textView_nombreContacto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text = "TextWhatevs"
+        android:layout_weight="0.27" />
+
+</LinearLayout>

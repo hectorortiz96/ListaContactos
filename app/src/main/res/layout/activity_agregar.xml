@@ -16,7 +16,9 @@
         android:orientation="vertical"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:paddingTop="50dp">
+        android:paddingTop="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
         <TextView
             android:id="@+id/textView_agregar_contacto_titulo"
@@ -115,14 +117,15 @@
 
     <Button
         android:id="@+id/button_agregar_contacto"
-        android:layout_width="115dp"
-        android:layout_height="54dp"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
         android:backgroundTint="@android:color/holo_green_dark"
         android:text="@string/agregar_contacto"
+        android:textSize="20dp"
         tools:layout_editor_absoluteX="135dp"
         tools:layout_editor_absoluteY="441dp"
-        android:layout_below="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        android:layout_marginBottom="27dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

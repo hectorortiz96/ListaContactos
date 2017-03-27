@@ -2,6 +2,7 @@ package itesm.mx.listacontactos;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +17,24 @@ import java.util.List;
  */
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
+
     private Context context;
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
+    private VariablesGlobales globalListaContactos ;
+    private List<Contacto> listaContactos;
 
-    public ExpandableListAdapter(Context context, List<String> listDataHeader,
-                                 HashMap<String, List<String>> listChildData) {
+    public ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listChildData) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listDataChild = listChildData;
+        //Aqui se tuvo que acceder a la clase global desde context porque el metodo getApplicationContext() solo se
+        //puede utilizar en una activity, y esta clase no es una activity. Para poder utilizar el getApplicationContext() aqui,
+        //se utiliza una referencia, en este caso el contexto de la actividad (cualquiera sirve) en que se creo un objeto de
+        // esta clase; en este caso especifico, el contexto es el de la actividad MainActivity, en la cual se creo un objeto
+        // de tipo ExpandableListAdapter
+        this.globalListaContactos = ((VariablesGlobales)context.getApplicationContext());
+        this.listaContactos = globalListaContactos.getListaContactos();
     }
     @Override
     public int getGroupCount() {
@@ -64,11 +74,30 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         String headerTitle = (String) getGroup(groupPosition);
-        if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this.context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_group, null);
+
+        //Familiares -> Naranja
+        if (groupPosition == 0){
+
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.list_group, null);
+            }
+        //Amigos -> Verde
+        } else if (groupPosition == 1){
+
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.list_group2, null);
+            }
+        //Servicios  -> Rosa
+        } else if (groupPosition == 2){
+
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.list_group3, null);
+            }
         }
+
 
         TextView lblListHeader = (TextView) convertView.findViewById(R.id.textListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
@@ -79,15 +108,33 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        final String childText = (String) getChild(groupPosition, childPosition);
 
-        if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_item, null);
+        final String childText = (String) getChild(groupPosition, childPosition);
+        String headerTitle = (String)getGroup(groupPosition);
+        if (groupPosition == 0){
+
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.list_item, null);
+            }
+
+        } else if (groupPosition == 1){
+
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.list_item2, null);
+            }
+
+        } else if (groupPosition == 2){
+
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.list_item3, null);
+            }
+
         }
 
         TextView tvListChild = (TextView) convertView.findViewById(R.id.textListItem);
-
         tvListChild.setText(childText);
         return convertView;
     }

@@ -53,6 +53,8 @@ public class PermisosActivity extends AppCompatActivity implements  View.OnClick
             startActivityForResult(intent, REQUEST_ACCEDER);
         }else{
             Toast.makeText(getApplicationContext(), "Contraseña incorrecta!", Toast.LENGTH_SHORT).show();
+            etContrasena.setText("");
+            etConfContraseña.setText("");
         }
     }
 

@@ -56,7 +56,11 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
     }
 
     @Override
+    //Se manda a llamar al hacerle click a cualquier renglon de un header
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+        //Para obtener la informacion de un contacto, lo unico que necesitas es pasar a la otra actividad el nombre del
+        //contacto sobre el cual se le hizo click (en la otra actividad se buscara dicho nombre en el arreglo de contactos
+        //de la clase global y se obtendra la informacion restante)
         Intent intent;
         intent = new Intent(MainActivity.this, ContactDetails.class);
         String nombre = (String)parent.getExpandableListAdapter().getChild(groupPosition, childPosition);
@@ -93,11 +97,13 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
         Type listType = new TypeToken<ArrayList<Contacto>>(){}.getType();
         listaContactos = gson.fromJson(json, listType);
 
+        //Si habia un arreglo de contactos guardado en memoria
         if (listaContactos != null){
+            //Guarda en la clase global el arreglo de contactos que extrajiste de memoria para que otras actividades puedan tener acceso a esa informacion
             VariablesGlobales globalListaContactos = ((VariablesGlobales) getApplicationContext());
             globalListaContactos.setListaContactos(listaContactos);
 
-            //Adding child data
+            //Del arreglo de contactos extraido, añadelos al arreglo de strings que corresponda (el de familiares, amigos o servicios)
             for (int iCont = 0; iCont < listaContactos.size(); iCont++){
                 Contacto contactoTemp = listaContactos.get(iCont);
                 Log.d("Nombre:",listaContactos.get(iCont).getNombre());
@@ -111,29 +117,20 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
         }
         else
         {
+         //Si no habia un arreglo de contactos guardado en memoria, entonces: 1)Deja los arreglos de strings vacios (familiares, amigos, etc),
+            // 2)Inicializa al arreglo de contactos de la clase global como un arreglo vacio
             List<Contacto> NuevaLista = new ArrayList<Contacto>();
             VariablesGlobales globalListaContactos = ((VariablesGlobales) getApplicationContext());
             globalListaContactos.setListaContactos(NuevaLista);
         }
 
 
-        // Adding child data
+        // Asigna los valores estaticos de los headers
         listDataHeader.add("Familiares");
         listDataHeader.add("Amigos");
         listDataHeader.add("Servicios de emergencias");
 
-        /*
-        // Adding child data
-        familiares.add("Alejandro Salgado");
-        familiares.add("Oscar Uriel");
-
-        amigos.add("Carlos Sanchez");
-        amigos.add("Martin Murillo");
-
-        emergencias.add("Hospital Cruz Roja");
-        emergencias.add("Policia");
-        emergencias.add("Atencion Adulto Mayor");*/
-
+        //Relaciona los headers con los contactos que les corresponden (para eso usa un hashmap)
         listDataChild.put(listDataHeader.get(0), familiares); // Header, Child data
         listDataChild.put(listDataHeader.get(1), amigos);
         listDataChild.put(listDataHeader.get(2), emergencias);
@@ -152,8 +149,10 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null){
             Boolean actualizar = data.getBooleanExtra("actualizar",false);
+            //Despliega los cambios realizados (contactos añadidos, editados o eliminados)
             if (actualizar) {
 
+                //Accede al arreglo de contactos de la clase global, la cual contiene la informacion actualizada de los contactos
                 VariablesGlobales globalListaContactos = ((VariablesGlobales) getApplicationContext());
                 listaContactos = globalListaContactos.getListaContactos();
 
@@ -161,6 +160,8 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                 List<String> amigos =  new ArrayList<String>();
                 List<String> emergencias = new ArrayList<String>() ;
 
+                //Utiliza el arreglo de contactos de la clase global para guardar a los contactos en el arreglo de strings
+                //que le corresponde (familiares, amigos, servicios)
                 for (int iCont = 0; iCont < listaContactos.size(); iCont++){
                     Contacto contactoTemp = listaContactos.get(iCont);
                     if (contactoTemp.getTipo() == 0)
@@ -170,23 +171,18 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                     else if (contactoTemp.getTipo() == 2)
                         emergencias.add(contactoTemp.getNombre());
                 }
+
+                //Limpia el hashmap
                 listDataChild.clear();
 
-                /*
-                familiares.add("Alejandro Salgado");
-                familiares.add("Oscar Uriel");
-
-                amigos.add("Carlos Sanchez");
-                amigos.add("Martin Murillo");
-
-                emergencias.add("Hospital Cruz Roja");
-                emergencias.add("Policia");
-                emergencias.add("Atencion Adulto Mayor");*/
-
+                //Agrega al hashmap los valores actualizados (los headers no cambian, pero sus items o renglones
+                //dentro de ellos si lo hacen
                 listDataChild.put(listDataHeader.get(0), familiares); // Header, Child data
                 listDataChild.put(listDataHeader.get(1), amigos);
                 listDataChild.put(listDataHeader.get(2), emergencias);
 
+                //Informa al adaptador que la informacion cruda (el hashmap) fue actualizada, y que por tanto tiene que actualizar
+                //los views
                 listAdapter.notifyDataSetChanged();
             }
         }
