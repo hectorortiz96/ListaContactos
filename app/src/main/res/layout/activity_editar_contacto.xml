@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="itesm.mx.listacontactos.AgregarActivity">
+    tools:context="itesm.mx.listacontactos.EditarContactoActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -20,7 +20,7 @@
         android:layout_above="@+id/button_agregar_contacto">
 
         <TextView
-            android:id="@+id/textView_agregar_contacto_titulo"
+            android:id="@+id/textView_editar_contacto_titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/imageButton_elige_imagen"
@@ -28,7 +28,7 @@
             android:layout_alignStart="@+id/imageButton_elige_imagen"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="0dp"
-            android:text="@string/agregar_contacto_titulo"
+            android:text="@string/editar_contacto_titulo"
             android:textColor="@android:color/black"
             android:textSize="30sp"
             tools:layout_editor_absoluteX="85dp"
@@ -78,7 +78,7 @@
 
         <TextView
             android:id="@+id/textView_categoria"
-            android:layout_width="135dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/spinner_categoria"
             android:layout_alignLeft="@+id/editText_numero_contacto"
@@ -116,15 +116,15 @@
 
     <Button
         android:id="@+id/button_agregar_contacto"
-        android:layout_width="130dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:backgroundTint="@android:color/holo_green_dark"
-        android:text="@string/agregar_contacto"
+        android:text="@string/editar_contacto"
         android:textSize="20dp"
         tools:layout_editor_absoluteX="135dp"
         tools:layout_editor_absoluteY="441dp"
+        android:layout_marginBottom="22dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

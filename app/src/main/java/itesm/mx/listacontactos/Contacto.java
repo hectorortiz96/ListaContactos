@@ -11,12 +11,22 @@ public class Contacto implements Serializable {
     private int tipo;
     private String nombre;
     private String numero;
+    private byte[] imagen;
 
     public Contacto(int tipo, String nombre, String numero)
     {
         this.tipo = tipo;
         this.nombre = nombre;
         this.numero = numero;
+        this.imagen = null;
+    }
+
+    public Contacto(int tipo, String nombre, String numero, byte[] imagen)
+    {
+        this.tipo = tipo;
+        this.nombre = nombre;
+        this.numero = numero;
+        this.imagen = imagen;
     }
 
     public void setTipo(int tipo){this.tipo = tipo;}
@@ -27,5 +37,10 @@ public class Contacto implements Serializable {
 
     public void setNumero(String numero){this.numero = numero;}
     public String getNumero(){return numero;}
+
+    public void setImagen(byte[] imagen){this.imagen = imagen;}
+    public byte[] getImagen(){
+        return this.imagen;
+    }
 
 }

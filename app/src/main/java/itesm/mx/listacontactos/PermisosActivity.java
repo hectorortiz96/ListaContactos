@@ -28,7 +28,6 @@ public class PermisosActivity extends AppCompatActivity implements  View.OnClick
 
         btnAceptar = (Button)findViewById(R.id.button_aceptar);
         etContrasena = (EditText) findViewById(R.id.password_contrasena);
-        etConfContraseña = (EditText) findViewById(R.id.password_confirmar_contrasena);
 
         //contrasena = etContrasena.getText().toString();
         //confContrasena = etConfContraseña.getText().toString();
@@ -44,23 +43,19 @@ public class PermisosActivity extends AppCompatActivity implements  View.OnClick
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         String passwordValor = sharedPref.getString("password",null);
         contrasena = etContrasena.getText().toString();
-        confContrasena = etConfContraseña.getText().toString();
         Log.d("Password vale:",passwordValor);
         Log.d("contraseña vale:", contrasena);
-        Log.d("confirmacion vale:", confContrasena);
-        if (contrasena.equals(passwordValor)&& confContrasena.equals(passwordValor)) {
+        if (contrasena.equals(passwordValor)) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivityForResult(intent, REQUEST_ACCEDER);
         }else{
             Toast.makeText(getApplicationContext(), "Contraseña incorrecta!", Toast.LENGTH_SHORT).show();
             etContrasena.setText("");
-            etConfContraseña.setText("");
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        etConfContraseña.setText(null);
         etContrasena.setText(null);
         if (data != null){
             Boolean agregado = data.getBooleanExtra("agregado",false);

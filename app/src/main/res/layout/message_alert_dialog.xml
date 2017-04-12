@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170sp"
+    android:layout_height="300sp"
+    android:layout_gravity="center">
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:checkedButton="@+id/radioButton5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10sp"
+                android:src="@drawable/comida" />
+
+            <RadioButton
+                android:id="@+id/radioButton_comida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="onRadioButtonClicked" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="130sp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10sp"
+                android:src="@drawable/emergencia" />
+
+            <RadioButton
+                android:id="@+id/radioButton_policia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="onRadioButtonClicked" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="130sp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10sp"
+                android:src="@drawable/hospital" />
+
+            <RadioButton
+                android:id="@+id/radioButton_hospital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="onRadioButtonClicked" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="130sp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10sp"
+                android:src="@drawable/triste" />
+
+            <RadioButton
+                android:id="@+id/radioButton_tristeza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:onClick="onRadioButtonClicked" />
+
+        </LinearLayout>
+
+
+    </RadioGroup>
+</LinearLayout>

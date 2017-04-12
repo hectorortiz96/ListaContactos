@@ -1,15 +1,24 @@
 package itesm.mx.listacontactos;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -25,9 +34,10 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
-    ImageButton buttonSettings;
     List<Contacto> listaContactos;
     final int REQUEST_PERMISOS = 0;
+    EditText input;
+    String passwordValor;
 
 //push carlos
 
@@ -48,9 +58,6 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
         expListView.setAdapter(listAdapter);
 
         expListView.setOnChildClickListener(this);
-
-        buttonSettings = (ImageButton)findViewById(R.id.buttonSettings);
-        buttonSettings.setOnClickListener(this);
 
 
     }
@@ -80,15 +87,19 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
 
         //Crea (si aun no ha sido creado) y accede al archivo donde esta guardada la informacion de los contactos
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+        passwordValor = sharedPref.getString("password", null);
+
+        if (passwordValor == null){
+            //Guarda una contraseña
+            SharedPreferences.Editor editor = sharedPref.edit();
+            //editor.clear();
+            //editor.commit();
+            passwordValor = getResources().getString(R.string.default_password);
+            editor.putString("password", passwordValor);
+            editor.commit();
+        }
 
 
-        //Guarda una contraseña
-        SharedPreferences.Editor editor = sharedPref.edit();
-        //editor.clear();
-        //editor.commit();
-        String passwordValor = "usuario";
-        editor.putString("password", passwordValor);
-        editor.commit();
 
         //Trae la informacion de los contactos (se guardo en forma de un arreglo, la adquiero en forma de un arreglo)
         Gson gson = new Gson();
@@ -140,17 +151,20 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
 
     @Override
     public void onClick(View v) {
-        Intent intent;
-        intent = new Intent(MainActivity.this, PermisosActivity.class);
-        startActivityForResult(intent,REQUEST_PERMISOS);
+
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null){
-            Boolean actualizar = data.getBooleanExtra("actualizar",false);
+
+            Boolean agregado = data.getBooleanExtra("agregado",false);
+            Boolean modificado = data.getBooleanExtra("modificado",false);
+            Boolean eliminado = data.getBooleanExtra("eliminado",false);
+            Boolean cambioContrasena = data.getBooleanExtra("cambioContrasena", false);
+
             //Despliega los cambios realizados (contactos añadidos, editados o eliminados)
-            if (actualizar) {
+            if (agregado || modificado || eliminado) {
 
                 //Accede al arreglo de contactos de la clase global, la cual contiene la informacion actualizada de los contactos
                 VariablesGlobales globalListaContactos = ((VariablesGlobales) getApplicationContext());
@@ -185,7 +199,81 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                 //los views
                 listAdapter.notifyDataSetChanged();
             }
+
+            if (cambioContrasena){
+                SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+                String tempString = sharedPref.getString("password", null);
+
+                if (!tempString.isEmpty())
+                    passwordValor = tempString;
+
+            }
         }
 
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        //Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        //Handle action bar item clicks here.  The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        Log.d("onOptionsItemSelected: ", "Entro a este metodo");
+        //noinspection SimplifiableIfStatement
+        if (item.getItemId() == R.id.ajustes){
+            seleccionaAjustes();
+            return true;
+        }else if(item.getItemId() == R.id.cancelar) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    private void seleccionaAjustes() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Introduce la contraseña");
+
+        input = new EditText(MainActivity.this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        builder.setView(input);
+
+        // Setting Positive "Yes" Button
+        builder.setPositiveButton("Entrar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int which) {
+                        // Write your code here to execute after dialog
+                        String temp = input.getText().toString();
+                        if (temp.equals(passwordValor)){
+                            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                            startActivityForResult(intent, 0);
+                        }
+                        else
+                            Toast.makeText(getApplicationContext(), "Contraseña incorrecta!", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+        // Setting Negative "NO" Button
+        builder.setNegativeButton("Cancelar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Write your code here to execute after dialog
+                        dialog.cancel();
+                    }
+                });
+
+
+        builder.show();
     }
 }

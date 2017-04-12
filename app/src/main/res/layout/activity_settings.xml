@@ -7,52 +7,68 @@
     tools:context="itesm.mx.listacontactos.SettingsActivity">
 
     <Button
-        android:id="@+id/buttonDelete"
+        android:id="@+id/buttonAdd"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="250dp"
         android:layout_height="70dp"
-        android:background="@android:color/holo_red_light"
+        android:layout_alignLeft="@+id/buttonDelete"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/buttonDelete"
+        android:layout_marginTop="23dp"
+        android:background="@android:color/holo_green_light"
         android:elevation="0dp"
-        android:text="borrar contacto"
+        android:text="@string/agregar_contacto_boton"
         android:textAlignment="center"
         android:textSize="24sp"
         tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="295dp"
-        android:layout_marginTop="100dp"
-        android:layout_below="@+id/buttonEdit"
-        android:layout_centerHorizontal="true" />
+        tools:layout_editor_absoluteY="73dp" />
 
     <Button
         android:id="@+id/buttonEdit"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="250dp"
         android:layout_height="70dp"
-        android:background="@android:color/holo_blue_dark"
+        android:layout_alignLeft="@+id/buttonAdd"
+        android:layout_alignStart="@+id/buttonAdd"
+        android:layout_below="@+id/buttonAdd"
+        android:layout_marginTop="45dp"
+        android:background="@android:color/holo_purple"
         android:elevation="0dp"
-        android:text="editar contacto"
+        android:text="@string/editar_contacto_boton"
         android:textAlignment="center"
         android:textSize="24sp"
         tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="184dp"
-        android:layout_marginTop="75dp"
-        android:layout_below="@+id/buttonAdd"
-        android:layout_alignLeft="@+id/buttonAdd"
-        android:layout_alignStart="@+id/buttonAdd" />
+        tools:layout_editor_absoluteY="184dp" />
 
     <Button
-        android:id="@+id/buttonAdd"
+        android:id="@+id/buttonDelete"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="250dp"
         android:layout_height="70dp"
-        android:background="@android:color/holo_green_light"
+        android:background="@android:color/holo_red_light"
         android:elevation="0dp"
-        android:text="agregar contacto"
+        android:text="@string/borrar_contacto_boton"
         android:textAlignment="center"
         android:textSize="24sp"
         tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="73dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/buttonDelete"
-        android:layout_alignStart="@+id/buttonDelete"
-        android:layout_marginTop="44dp" />
+        tools:layout_editor_absoluteY="295dp"
+        android:layout_marginTop="49dp"
+        android:layout_below="@+id/buttonEdit"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/buttonPassword"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/buttonDelete"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp"
+        android:background="@color/colorAccent"
+        android:elevation="0dp"
+        android:text="@string/cambiar_password_boton"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="295dp" />
 </RelativeLayout>

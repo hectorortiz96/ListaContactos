@@ -28,122 +28,135 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AgregarActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class EditarContactoActivity extends AppCompatActivity implements View.OnClickListener  {
 
-    private int categoria;
-    private String nombre;
-    private String numero;
-    List<Contacto> listaContactos;
-
+    Contacto contactoElegido;
+    int posicion;
     EditText etNombre;
     EditText etNumero;
     Spinner spCategoria;
-    String[] stringCategorias;
-    Button btnAgregar;
-    ImageButton ibImagen;
-    byte[] imagen;
+    Button btnGuardar;
+    ImageButton ibFoto;
 
+    String nombre;
+    String numero;
+    String[] stringCategorias;
+    int categoria;
+    byte[] foto;
     final int REQUEST_TAKE_PHOTO = 0;
     final int REQUEST_PICK_PHOTO = 1;
-
+    List<Contacto> listaContactos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agregar);
+        setContentView(R.layout.activity_editar_contacto);
+
+        contactoElegido = (Contacto) getIntent().getSerializableExtra("Contacto");
+        posicion = getIntent().getIntExtra("posicion",-1);
 
         etNombre = (EditText) findViewById(R.id.editText_nombre_contacto);
-        etNumero = (EditText) findViewById(R.id.editText_numero_contacto);
+        etNumero= (EditText) findViewById(R.id.editText_numero_contacto);
         spCategoria = (Spinner) findViewById(R.id.spinner_categoria);
         stringCategorias = getResources().getStringArray(R.array.array_categorias);
-        btnAgregar = (Button) findViewById(R.id.button_agregar_contacto);
-        ibImagen = (ImageButton) findViewById(R.id.imageButton);
+        btnGuardar = (Button) findViewById(R.id.button_agregar_contacto);
+        ibFoto = (ImageButton) findViewById(R.id.imageButton);
 
+        etNombre.setText(contactoElegido.getNombre());
+        etNumero.setText(contactoElegido.getNumero());
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, stringCategorias); //selected item will look like a spinner set from XML
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategoria.setAdapter(spinnerArrayAdapter);
-        spCategoria.setOnItemSelectedListener(AgregarActivity.this);
 
-        View.OnClickListener MyListener = new View.OnClickListener(){
+        AdapterView.OnItemSelectedListener MyListenerSpinner = new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v){
-                switch (v.getId()) {
-                    case (R.id.imageButton):
-                        selectImage();
-                        break;
-                    case (R.id.button_agregar_contacto):
-                        guardarDatos();
-                        break;
-                }
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                // An item was selected. You can retrieve the selected item using
+                // parent.getItemAtPosition(pos)
 
+                String seleccion = (String)parent.getItemAtPosition(pos);
+                if (seleccion.equals("Familiares")){
+                    categoria = 0;
+                }
+                else if (seleccion.equals("Amigos")){
+                    categoria = 1;
+                }
+                else if (seleccion.equals("Servicios de emergencias")) {
+                    categoria = 2;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
             }
         };
 
-        btnAgregar.setOnClickListener(MyListener);
-        ibImagen.setOnClickListener(MyListener);
+        nombre = contactoElegido.getNombre();
+        numero = contactoElegido.getNumero();
+        categoria = contactoElegido.getTipo();
+        foto = contactoElegido.getImagen();
+        if (foto != null){
+            Bitmap bmimage = BitmapFactory.decodeByteArray(foto,0,foto.length);
+            ibFoto.setBackground(null);
+            ibFoto.setImageBitmap(bmimage);
+        }
+
+        spCategoria.setSelection(categoria);
+        spCategoria.setOnItemSelectedListener(MyListenerSpinner);
+        btnGuardar.setOnClickListener(this);
+        ibFoto.setOnClickListener(this);
 
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+    public void onClick(View v) {
 
-        String seleccion = (String)parent.getItemAtPosition(pos);
-        Log.d("Categoria:",seleccion);
-        if (seleccion.equals("Familiares")){
-            categoria = 0;
+        switch (v.getId()){
+            case (R.id.imageButton):
+                selectImage();
+                break;
+            case (R.id.button_agregar_contacto):
+                nombre = etNombre.getText().toString();
+                numero = etNumero.getText().toString();
+
+
+                if (!nombre.isEmpty() && !numero.isEmpty()){
+
+                    listaContactos = new ArrayList<>();
+                    VariablesGlobales globalListaContactos = (VariablesGlobales) getApplicationContext();
+                    listaContactos = globalListaContactos.getListaContactos();
+
+                    if (posicion != -1){
+                        listaContactos.get(posicion).setTipo(categoria);
+                        listaContactos.get(posicion).setNombre(nombre);
+                        listaContactos.get(posicion).setNumero(numero);
+                        listaContactos.get(posicion).setImagen(foto);
+                    }
+
+                    globalListaContactos.setListaContactos(listaContactos);
+
+                    SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(listaContactos);
+                    editor.putString("Contactos", json);
+                    editor.commit();
+
+
+                    Toast.makeText(getApplicationContext(), "Modificaste al contacto!", Toast.LENGTH_SHORT).show();
+                    finish();
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Falto agregar el nombre o el numero! No se pudo modificar al contacto!", Toast.LENGTH_SHORT).show();
+                }
+
+                break;
         }
-        else if (seleccion.equals("Amigos")){
-            categoria = 1;
-        }
-        else if (seleccion.equals("Servicios de emergencias")) {
-            categoria = 2;
-        }
-        String temp = Integer.toString(categoria);
-        Log.d("Categoria Valor:",temp);
 
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-    public void guardarDatos(){
-        nombre = etNombre.getText().toString();
-        numero = etNumero.getText().toString();
-        Log.d("Nombre:",nombre);
-        Log.d("Numero:",numero);
-        if (!nombre.isEmpty() && !numero.isEmpty()){
-            listaContactos = new ArrayList<>();
-            Contacto contacto = new Contacto(categoria,nombre,numero,imagen);
-            String temp = Integer.toString(contacto.getTipo());
-            Log.d("Nombre contacto",contacto.getNombre());
-            Log.d("Numero contacto", contacto.getNumero());
-            Log.d("Categoria contacto:",temp);
-            VariablesGlobales globalListaContactos = (VariablesGlobales) getApplicationContext();
-            listaContactos = globalListaContactos.getListaContactos();
-            listaContactos.add(contacto);
-            globalListaContactos.setListaContactos(listaContactos);
-
-            SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            Gson gson = new Gson();
-            String json = gson.toJson(listaContactos);
-            editor.putString("Contactos", json);
-            editor.commit();
-
-
-            Intent intent = new Intent();
-            //intent.putExtra("Agregado",true);
-            setResult(RESULT_OK, intent);
-            Toast.makeText(getApplicationContext(), "Agregaste un contacto!", Toast.LENGTH_SHORT).show();
-            finish();
-
-        }else{
-            Toast.makeText(getApplicationContext(), "Falto agregar el nombre o el numero! No se agrego contacto!", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -152,12 +165,12 @@ public class AgregarActivity extends AppCompatActivity implements AdapterView.On
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            imagen = stream.toByteArray();
+            foto = stream.toByteArray();
 
-            if (imagen != null){
-                Bitmap bmimage = BitmapFactory.decodeByteArray(imagen,0,imagen.length);
-                ibImagen.setBackground(null);
-                ibImagen.setImageBitmap(bmimage);
+            if (foto != null){
+                Bitmap bmimage = BitmapFactory.decodeByteArray(foto,0,foto.length);
+                ibFoto.setBackground(null);
+                ibFoto.setImageBitmap(bmimage);
             }
         }
         else if (requestCode == REQUEST_PICK_PHOTO && resultCode == RESULT_OK && data != null){
@@ -181,11 +194,11 @@ public class AgregarActivity extends AppCompatActivity implements AdapterView.On
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                ibImagen.setImageBitmap(selectedImage);
+                ibFoto.setImageBitmap(selectedImage);
 
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 selectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                imagen = stream.toByteArray();
+                foto = stream.toByteArray();
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -234,6 +247,4 @@ public class AgregarActivity extends AppCompatActivity implements AdapterView.On
         builder.setItems(opciones, dialogListener);
         builder.show();
     }
-
-
 }

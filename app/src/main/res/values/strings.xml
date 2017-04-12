@@ -17,6 +17,20 @@
     </string-array>
     <string name="eliminar_contacto">Eliminar</string>
     <string name="eliminar_contacto_titulo">Eliminar contacto</string>
+    <string name="editar_contacto_titulo">Editar contacto</string>
+    <string name="editar_contacto_texto">Elige a un contacto para editar: </string>
+    <string name="editar_contacto">Confirmar cambios</string>
+    <string name="ajustes">Configuracion</string>
+    <string name="cancelar">Cancelar</string>
+
+    <string name="borrar_contacto_boton">Borrar contacto</string>
+    <string name="agregar_contacto_boton">Agregar contacto</string>
+    <string name="editar_contacto_boton">Editar contacto</string>
+    <string name="cambiar_password_boton">Cambiar contraseña</string>
+    <string name="confirmar_nueva_contrasena">Confirmar contraseña</string>
+    <string name="nueva_contrasena">Nueva contraseña</string>
+    <string name="default_password">usuario</string>
+    <string name="parentezco">Parentezco: </string>
 
 
     <!-- Strings related to Settings -->
