@@ -99,6 +99,12 @@ public class AgregarActivity extends AppCompatActivity implements AdapterView.On
         else if (seleccion.equals("Servicios de emergencias")) {
             categoria = 2;
         }
+        else if (seleccion.equals("Servicios de Salud")) {
+            categoria = 2;
+        }
+        else if (seleccion.equals("Otros")) {
+            categoria = 3;
+        }
         String temp = Integer.toString(categoria);
         Log.d("Categoria Valor:",temp);
 

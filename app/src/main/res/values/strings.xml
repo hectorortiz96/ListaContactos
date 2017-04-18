@@ -13,7 +13,8 @@
     <string-array name="array_categorias">
         <item>Familiares</item>
         <item>Amigos</item>
-        <item>Servicios de emergencias</item>
+        <item>Servicios de Salud</item>
+        <item>Otros</item>
     </string-array>
     <string name="eliminar_contacto">Eliminar</string>
     <string name="eliminar_contacto_titulo">Eliminar contacto</string>

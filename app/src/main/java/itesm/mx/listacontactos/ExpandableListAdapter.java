@@ -96,8 +96,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_group3, null);
             }
-        }
+        }  else if (groupPosition == 3) {
 
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.list_group4, null);
+            }
+        }
 
         TextView lblListHeader = (TextView) convertView.findViewById(R.id.textListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
@@ -132,7 +137,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 convertView = infalInflater.inflate(R.layout.list_item3, null);
             }
 
+        }  else if (groupPosition == 3){
+
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.list_item4, null);
+            }
+
         }
+
 
         TextView tvListChild = (TextView) convertView.findViewById(R.id.textListItem);
         tvListChild.setText(childText);
