@@ -10,7 +10,8 @@
         android:id="@+id/textListItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="25sp"
-        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"/>
+        android:background="@android:color/holo_green_light"
+        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:textSize="25sp" />
 
 </LinearLayout>

@@ -6,17 +6,35 @@
     android:layout_height="match_parent"
     tools:context="itesm.mx.listacontactos.EditarActivity">
 
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
     <TextView
         android:id="@+id/textView_editar_contacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/editar_contacto_titulo"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/background_light"
         android:textSize="30sp"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="44dp"
-        android:layout_marginTop="17dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -24,22 +42,13 @@
         android:id="@+id/textView_editar_contacto_texto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_editar_contacto"
-        android:layout_marginTop="10dp"
-        android:paddingLeft="15dp"
-        android:text="@string/editar_contacto_texto"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
-
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/listView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView_editar_contacto_texto"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="20dp"/>
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:text="@string/editar_contacto_texto"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
 
 </RelativeLayout>

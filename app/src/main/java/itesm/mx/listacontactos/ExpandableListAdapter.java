@@ -89,13 +89,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_group2, null);
             }
-        //Servicios  -> Rosa
+        //Servicios  -> Azul
         } else if (groupPosition == 2){
 
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_group3, null);
             }
+            //Otros -> Morado
         }  else if (groupPosition == 3) {
 
             if (convertView == null) {
