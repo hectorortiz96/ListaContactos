@@ -27,7 +27,7 @@
             android:layout_alignStart="@+id/imageButton_elige_imagen"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="0dp"
-            android:text="@string/agregar_contacto_titulo"
+            android:text="Datos del contacto:"
             android:textColor="@android:color/black"
             android:textSize="30sp"
             tools:layout_editor_absoluteX="85dp"

@@ -75,6 +75,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         String headerTitle = (String) getGroup(groupPosition);
 
+
         //Familiares -> Naranja
         if (groupPosition == 0){
 
@@ -122,6 +123,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_item, null);
+
             }
 
         } else if (groupPosition == 1){
@@ -144,7 +146,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_item4, null);
             }
-
         }
 
 

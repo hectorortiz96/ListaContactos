@@ -28,32 +28,6 @@
         android:layout_above="@+id/button_eliminar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView_eliminar_contacto"
         android:layout_marginBottom="21dp" />
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
-
-    <TextView
-        android:id="@+id/textView_eliminar_contacto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/toolbar"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="9dp"
-        android:text="@string/eliminar_contacto_titulo"
-        android:textColor="@android:color/background_light"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="44dp" />
 
 </RelativeLayout>

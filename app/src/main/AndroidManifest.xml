@@ -18,11 +18,11 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ContactDetails" />
+        <activity android:name=".ContactDetails"
+            android:label="@string/title_activity_contact_details"/>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
@@ -32,8 +32,10 @@
                 android:value="itesm.mx.listacontactos.MainActivity" />
         </activity>
         <activity android:name=".PermisosActivity" />
-        <activity android:name=".AgregarActivity" />
-        <activity android:name=".EliminarActivity" />
+        <activity android:name=".AgregarActivity"
+            android:label="@string/title_activity_agregar"/>
+        <activity android:name=".EliminarActivity"
+            android:label="@string/title_activity_eliminar"/>
         <activity android:name=".EditarActivity" />
         <activity android:name=".EditarContactoActivity" />
         <activity android:name=".ChangePasswordActivity"></activity>
