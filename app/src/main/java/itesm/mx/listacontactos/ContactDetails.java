@@ -272,7 +272,7 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
                     hospital.setChecked(false);
                     triste.setChecked(false);
                     //message = getResources().getString(R.string.parentezco) + " Necesito comida, por favor!";
-                    message = "Necesito comida, por favor!";
+                    message = "Necesito comida!";
                     //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.radioButton_hospital:
@@ -281,7 +281,7 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
                     triste.setChecked(false);
                     comida.setChecked(false);
                     //message = getResources().getString(R.string.parentezco) + " Me hacen falta medicinas!";
-                    message = "Me hacen falta medicinas!";
+                    message = "Necesito atención médica!";
                     //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.radioButton_policia:
