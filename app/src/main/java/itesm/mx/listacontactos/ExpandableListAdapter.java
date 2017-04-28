@@ -75,6 +75,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         String headerTitle = (String) getGroup(groupPosition);
 
+
         //Familiares -> Naranja
         if (groupPosition == 0){
 
@@ -89,15 +90,21 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_group2, null);
             }
-        //Servicios  -> Rosa
+        //Servicios  -> Azul
         } else if (groupPosition == 2){
 
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_group3, null);
             }
-        }
+            //Otros -> Morado
+        }  else if (groupPosition == 3) {
 
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.list_group4, null);
+            }
+        }
 
         TextView lblListHeader = (TextView) convertView.findViewById(R.id.textListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
@@ -116,6 +123,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_item, null);
+
             }
 
         } else if (groupPosition == 1){
@@ -132,7 +140,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 convertView = infalInflater.inflate(R.layout.list_item3, null);
             }
 
+        }  else if (groupPosition == 3){
+
+            if (convertView == null) {
+                LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = infalInflater.inflate(R.layout.list_item4, null);
+            }
         }
+
 
         TextView tvListChild = (TextView) convertView.findViewById(R.id.textListItem);
         tvListChild.setText(childText);

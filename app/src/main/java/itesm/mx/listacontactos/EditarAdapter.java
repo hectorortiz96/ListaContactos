@@ -46,6 +46,12 @@ public class EditarAdapter extends ArrayAdapter<Contacto> {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_editar3, parent, false);
             }
         }
+        else if (contacto.getTipo() == 3){
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_editar4, parent, false);
+            }
+        }
 
         TextView tvNombre = (TextView) convertView.findViewById(R.id.textView_nombreContacto);
         tvNombre.setText(contacto.getNombre());

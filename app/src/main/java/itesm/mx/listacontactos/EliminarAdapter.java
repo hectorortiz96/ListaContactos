@@ -47,6 +47,12 @@ public class EliminarAdapter extends ArrayAdapter<Contacto> {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_eliminar3, parent, false);
             }
         }
+        else if (contacto.getTipo() == 3){
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_eliminar4, parent, false);
+            }
+        }
 
         TextView tvNombre = (TextView) convertView.findViewById(R.id.textView_nombreContacto);
         tvNombre.setText(contacto.getNombre());

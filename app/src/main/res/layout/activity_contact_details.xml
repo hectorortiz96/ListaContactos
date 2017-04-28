@@ -10,13 +10,14 @@
         android:id="@+id/textContactName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_weight="1"
         android:text="Nombre Contacto"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/background_dark"
-        android:textColorLink="@android:color/background_dark" />
+        android:textColorLink="@android:color/background_dark"
+        android:layout_below="@+id/imageContactPhoto"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
 
     <ImageView
         android:id="@+id/imageContactPhoto"
@@ -24,7 +25,7 @@
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="40dp"
         android:layout_weight="1"
         app:srcCompat="@drawable/placeholder" />
 
@@ -48,7 +49,10 @@
         android:layout_below="@+id/buttonCall"
         android:layout_marginTop="11dp"
         android:background="@android:color/holo_red_light"
+        android:drawableLeft="@drawable/ic_message"
         android:elevation="0dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="20dp"
         android:text="mensaje"
         android:textAlignment="center"
         android:textSize="24sp" />
@@ -62,8 +66,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:background="@android:color/holo_green_light"
+        android:drawableLeft="@drawable/ic_llamada"
         android:elevation="0dp"
-        android:text="marcar"
+        android:paddingLeft="40dp"
+        android:paddingRight="20dp"
+        android:text="llamada"
         android:textAlignment="center"
         android:textSize="24sp" />
 

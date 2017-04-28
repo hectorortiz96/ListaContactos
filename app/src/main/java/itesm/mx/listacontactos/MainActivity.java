@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.explistLista);
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
         listDataChild = new HashMap<String, List<String>>();
         List<String> familiares =  new ArrayList<String>();
         List<String> amigos =  new ArrayList<String>();
+        List<String> otros =  new ArrayList<String>();
         List<String> emergencias = new ArrayList<String>() ;
         listaContactos = new ArrayList<Contacto>();
 
@@ -125,6 +129,8 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                     amigos.add(contactoTemp.getNombre());
                 else if (contactoTemp.getTipo() == 2)
                     emergencias.add(contactoTemp.getNombre());
+                else if (contactoTemp.getTipo() == 3)
+                    otros.add(contactoTemp.getNombre());
             }
         }
         else
@@ -140,12 +146,15 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
         // Asigna los valores estaticos de los headers
         listDataHeader.add("Familiares");
         listDataHeader.add("Amigos");
-        listDataHeader.add("Servicios de emergencias");
+        listDataHeader.add("Servicios de Salud");
+        listDataHeader.add("Otros");
 
         //Relaciona los headers con los contactos que les corresponden (para eso usa un hashmap)
         listDataChild.put(listDataHeader.get(0), familiares); // Header, Child data
         listDataChild.put(listDataHeader.get(1), amigos);
         listDataChild.put(listDataHeader.get(2), emergencias);
+        listDataChild.put(listDataHeader.get(3), otros);
+
 
     }
 
@@ -174,6 +183,8 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                 List<String> familiares =  new ArrayList<String>();
                 List<String> amigos =  new ArrayList<String>();
                 List<String> emergencias = new ArrayList<String>() ;
+                List<String> otros = new ArrayList<String>() ;
+
 
                 //Utiliza el arreglo de contactos de la clase global para guardar a los contactos en el arreglo de strings
                 //que le corresponde (familiares, amigos, servicios)
@@ -195,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                 listDataChild.put(listDataHeader.get(0), familiares); // Header, Child data
                 listDataChild.put(listDataHeader.get(1), amigos);
                 listDataChild.put(listDataHeader.get(2), emergencias);
+                listDataChild.put(listDataHeader.get(3), otros);
 
                 //Informa al adaptador que la informacion cruda (el hashmap) fue actualizada, y que por tanto tiene que actualizar
                 //los views
