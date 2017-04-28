@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -46,8 +47,12 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
     RadioButton hospital;
     RadioButton triste;
     RadioButton policia;
+    Button enviarMensaje;
     View myView;
     String message;
+
+    TextView tvAviso;
+    String recordatorio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +96,19 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
         marcar.setOnClickListener(this);
         mensaje.setOnClickListener(this);
 
+        SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+        recordatorio = sharedPref.getString("recordatorio", null);
+
+        if (recordatorio == null){
+            //Guarda una contraseña
+            SharedPreferences.Editor editor = sharedPref.edit();
+            //editor.clear();
+            //editor.commit();
+            recordatorio = getResources().getString(R.string.recordatorioPositivo);
+            editor.putString("recordatorio", recordatorio);
+            editor.commit();
+        }
+
     }
 
     @Override
@@ -124,6 +142,7 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
             case (R.id.buttonMessage):
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Elige un mensaje");
 
@@ -146,18 +165,63 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
                     public void onClick(DialogInterface dialog,int which) {
                         // Write your code here to execute after dialog
 
+                        AlertDialog.Builder builderAviso = new AlertDialog.Builder(ContactDetails.this);
+                        builderAviso.setTitle("Aviso");
+                        String aviso = getResources().getString(R.string.aviso);
+                        tvAviso = new TextView(ContactDetails.this);
+                        tvAviso.setText(aviso);
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                        tvAviso.setLayoutParams(lp);
+                        builderAviso.setView(tvAviso);
+
+                        builderAviso.setPositiveButton("Continuar",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Write your code here to execute after dialog
+                                dialog.cancel();
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + tvNumero.getText().toString()));
+                                intent.putExtra("sms_body", message);
+                                startActivity(intent);
+
+                            }
+                        });
+
+                        builderAviso.setNegativeButton("No recordar más",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Write your code here to execute after dialog
+                                SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                recordatorio = getResources().getString(R.string.recordatorioNegativo);
+                                editor.putString("recordatorio", recordatorio);
+                                editor.commit();
+
+                                dialog.cancel();
+
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + tvNumero.getText().toString()));
+                                intent.putExtra("sms_body", message);
+                                startActivity(intent);
+
+                            }
+                        });
+
+                        if (recordatorio.equals( getResources().getString(R.string.recordatorioPositivo)))
+                            builderAviso.show();
+
+                        else{
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + tvNumero.getText().toString()));
+                            intent.putExtra("sms_body", message);
+                            startActivity(intent);
+                        }
 
                     }
                 });
 
                 // Setting Negative "NO" Button
-                builder.setNegativeButton("Cancelar",
-                        new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // Write your code here to execute after dialog
                                 dialog.cancel();
                             }
-                        });
+                });
 
                 builder.show();
                 break;
@@ -207,33 +271,36 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
                     policia.setChecked(false);
                     hospital.setChecked(false);
                     triste.setChecked(false);
-                    message = getResources().getString(R.string.parentezco) + " Necesito comida, por favor!";
-                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    //message = getResources().getString(R.string.parentezco) + " Necesito comida, por favor!";
+                    message = "Necesito comida, por favor!";
+                    //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.radioButton_hospital:
                 if (checked)
                     policia.setChecked(false);
                     triste.setChecked(false);
                     comida.setChecked(false);
-                    message = getResources().getString(R.string.parentezco) + " Me hacen falta medicinas!";
-                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    //message = getResources().getString(R.string.parentezco) + " Me hacen falta medicinas!";
+                    message = "Me hacen falta medicinas!";
+                    //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.radioButton_policia:
                 if (checked)
                     hospital.setChecked(false);
                     triste.setChecked(false);
                     comida.setChecked(false);
-                    message = getResources().getString(R.string.parentezco) + " Ocupo a la policia! Llamenla!";
-                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    //message = getResources().getString(R.string.parentezco) + " Ocupo a la policia! Llamenla!";
+                    message = "Ocupo a la policia! Llamenla!";
+                    //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.radioButton_tristeza:
                 if (checked)
                     policia.setChecked(false);
                     hospital.setChecked(false);
                     comida.setChecked(false);
-                    message = getResources().getString(R.string.parentezco) + " Me siento triste!";
-                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-
+                    //message = getResources().getString(R.string.parentezco) + " Me siento triste!";
+                    message = "Me siento triste!";
+                     //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                 break;
         }
     }

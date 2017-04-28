@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
 
 
 
+
         //Trae la informacion de los contactos (se guardo en forma de un arreglo, la adquiero en forma de un arreglo)
         Gson gson = new Gson();
         String json = sharedPref.getString("Contactos", null);

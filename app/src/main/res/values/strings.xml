@@ -31,6 +31,10 @@
     <string name="nueva_contrasena">Nueva contraseña</string>
     <string name="default_password">usuario</string>
     <string name="parentezco">Parentezco: </string>
+    <string name = "aviso">Su telefonia contratada podria realizar cargos por el envio de mensajes sms</string>
+    <string name = "recordatorioPositivo">Si</string>
+    <string name = "recordatorioNegativo">No</string>
+
 
 
     <!-- Strings related to Settings -->
