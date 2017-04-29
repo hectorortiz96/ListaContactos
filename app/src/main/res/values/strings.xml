@@ -24,7 +24,7 @@
     <string name="eliminar_contacto_titulo">Eliminar contacto</string>
     <string name="editar_contacto_titulo">Editar contacto</string>
     <string name="editar_contacto_texto">Elige a un contacto para editar: </string>
-    <string name="editar_contacto">Confirmar cambios</string>
+    <string name="editar_contacto">Confirmar</string>
     <string name="ajustes">Configuracion</string>
     <string name="cancelar">Cancelar</string>
 
@@ -36,6 +36,10 @@
     <string name="nueva_contrasena">Nueva contraseña</string>
     <string name="default_password">usuario</string>
     <string name="parentezco">Parentezco: </string>
+    <string name = "aviso">Su telefonia contratada podria realizar cargos por el envio de mensajes sms</string>
+    <string name = "recordatorioPositivo">Si</string>
+    <string name = "recordatorioNegativo">No</string>
+
 
 
     <!-- Strings related to Settings -->

@@ -10,14 +10,14 @@
         android:id="@+id/textContactName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/imageContactPhoto"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:text="Nombre Contacto"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/background_dark"
-        android:textColorLink="@android:color/background_dark"
-        android:layout_below="@+id/imageContactPhoto"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" />
+        android:textColorLink="@android:color/background_dark" />
 
     <ImageView
         android:id="@+id/imageContactPhoto"
@@ -25,7 +25,7 @@
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         app:srcCompat="@drawable/placeholder" />
 
