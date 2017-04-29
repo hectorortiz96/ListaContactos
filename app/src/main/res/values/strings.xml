@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ListaContactos</string>
+    <string name="app_name">CTP-PAM</string>
     <string name="title_activity_settings">Configuracion</string>
     <string name="title_activity_agregar">Nuevo Contacto</string>
     <string name="title_activity_eliminar">Eliminar Contacto</string>
