@@ -2,6 +2,7 @@ package itesm.mx.listacontactos;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,42 +75,47 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         String headerTitle = (String) getGroup(groupPosition);
+        String color = "nada";
 
 
         //Familiares -> Naranja
         if (groupPosition == 0){
 
-            if (convertView == null) {
+            {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_group, null);
+                color = "naranja";
             }
         //Amigos -> Verde
         } else if (groupPosition == 1){
 
-            if (convertView == null) {
+             {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_group2, null);
+                color = "verde";
             }
         //Servicios  -> Azul
         } else if (groupPosition == 2){
 
-            if (convertView == null) {
+            {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_group3, null);
+                color = "azul";
             }
             //Otros -> Morado
         }  else if (groupPosition == 3) {
 
-            if (convertView == null) {
+            {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_group4, null);
+                color = "morado";
             }
         }
 
         TextView lblListHeader = (TextView) convertView.findViewById(R.id.textListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
-
+        color = "now";
         return convertView;
     }
 
@@ -130,21 +136,21 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.list_item2, null);
+                convertView = infalInflater.inflate(R.layout.list_item, null);
             }
 
         } else if (groupPosition == 2){
 
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.list_item3, null);
+                convertView = infalInflater.inflate(R.layout.list_item, null);
             }
 
         }  else if (groupPosition == 3){
 
             if (convertView == null) {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.list_item4, null);
+                convertView = infalInflater.inflate(R.layout.list_item, null);
             }
         }
 
