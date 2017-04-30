@@ -30,6 +30,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import me.grantland.widget.AutofitHelper;
+
 public class ContactDetails extends AppCompatActivity implements View.OnClickListener {
 
     List<Contacto> listaContactos;
@@ -70,6 +72,7 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
         marcar = (Button) findViewById(R.id.buttonCall);
         mensaje = (Button) findViewById(R.id.buttonMessage);
 
+        AutofitHelper.create(tvNombre);
 
         VariablesGlobales globalListaContactos = ((VariablesGlobales) getApplicationContext());
         listaContactos = globalListaContactos.getListaContactos();
