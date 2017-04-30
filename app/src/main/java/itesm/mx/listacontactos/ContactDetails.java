@@ -54,6 +54,11 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
     TextView tvAviso;
     String recordatorio;
 
+    ImageView ivComida;
+    ImageView ivPolicia;
+    ImageView ivHospital;
+    ImageView ivTristeza;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,12 +164,70 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
                 }*/
                 LayoutInflater inflater = getLayoutInflater();
                 myView = inflater.inflate(R.layout.message_alert_dialog,null);
+
+                ivComida = (ImageView) myView.findViewById(R.id.imageView_Comida);
+                ivPolicia = (ImageView) myView.findViewById(R.id.imageView_Policia);
+                ivHospital = (ImageView) myView.findViewById(R.id.imageView_Hospital);
+                ivTristeza = (ImageView) myView.findViewById(R.id.imageView_Tristeza);
+
+                comida = (RadioButton) myView.findViewById(R.id.radioButton_comida);
+                hospital = (RadioButton) myView.findViewById(R.id.radioButton_hospital);
+                policia = (RadioButton) myView.findViewById(R.id.radioButton_policia);
+                triste = (RadioButton) myView.findViewById(R.id.radioButton_tristeza);
+
+                View.OnClickListener myListener = new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        switch (view.getId()) {
+                            case R.id.imageView_Comida:
+                                policia.setChecked(false);
+                                hospital.setChecked(false);
+                                triste.setChecked(false);
+                                comida.setChecked(true);
+                                message = "Necesito comida!";
+                                break;
+                            case R.id.imageView_Policia:
+                                policia.setChecked(true);
+                                hospital.setChecked(false);
+                                triste.setChecked(false);
+                                comida.setChecked(false);
+                                message = "Ocupo a la policia! Llamenla!";
+                                break;
+                            case R.id.imageView_Hospital:
+                                policia.setChecked(false);
+                                hospital.setChecked(true);
+                                triste.setChecked(false);
+                                comida.setChecked(false);
+                                message = "Necesito atención médica!";
+                                break;
+                            case R.id.imageView_Tristeza:
+                                policia.setChecked(false);
+                                hospital.setChecked(false);
+                                triste.setChecked(true);
+                                comida.setChecked(false);
+                                message = "Me siento triste!";
+                                break;
+                        }
+                    }
+                };
+
+                ivComida.setOnClickListener(myListener);
+                ivPolicia.setOnClickListener(myListener);
+                ivHospital.setOnClickListener(myListener);
+                ivTristeza.setOnClickListener(myListener);
+
+
+
                 builder.setView(myView);
 
                 builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int which) {
                         // Write your code here to execute after dialog
 
+                        //ESTE CODIGO ES PARA MOSTRAR EL AVISO DE COSTO POR ENVIO DE MENSAJES SMS
+
+                        /*
                         AlertDialog.Builder builderAviso = new AlertDialog.Builder(ContactDetails.this);
                         builderAviso.setTitle("Aviso");
                         String aviso = getResources().getString(R.string.aviso);
@@ -211,6 +274,15 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
                             intent.putExtra("sms_body", message);
                             startActivity(intent);
                         }
+
+                        */
+
+
+                        //BORRAR ESTE CODIGO SI LA SECCION DE ARRIBA SE HABILITA
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + tvNumero.getText().toString()));
+                        intent.putExtra("sms_body", message);
+                        startActivity(intent);
+
 
                     }
                 });
@@ -259,10 +331,6 @@ public class ContactDetails extends AppCompatActivity implements View.OnClickLis
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-        comida = (RadioButton)myView.findViewById(R.id.radioButton_comida);
-        hospital = (RadioButton)myView.findViewById(R.id.radioButton_hospital);
-        policia = (RadioButton)myView.findViewById(R.id.radioButton_policia);
-        triste = (RadioButton)myView.findViewById(R.id.radioButton_tristeza);
 
         // Check which radio button was clicked
         switch(view.getId()) {

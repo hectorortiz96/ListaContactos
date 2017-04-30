@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
     final int REQUEST_PERMISOS = 0;
     EditText input;
     String passwordValor;
+
+    View myView;
 
 //push carlos
 
@@ -256,11 +259,23 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Introduce la contraseña");
 
-        input = new EditText(MainActivity.this);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LayoutInflater inflater = getLayoutInflater();
+        myView = inflater.inflate(R.layout.password_alert_dialog,null);
+        input = (EditText) myView.findViewById(R.id.et_password);
+
+        //input = new EditText(MainActivity.this);
+
+        /*
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.leftMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
+        lp.rightMargin = getResources().getDimensionPixelSize(R.dimen.dialog_margin);
         input.setLayoutParams(lp);
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        builder.setView(input);
+        */
+
+        //input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        //builder.setView(input);
+
+        builder.setView(myView);
 
         // Setting Positive "Yes" Button
         builder.setPositiveButton("Entrar", new DialogInterface.OnClickListener() {
@@ -286,6 +301,14 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
                     }
                 });
 
+
+        /*
+        //ESTE CODIGO ESTA MUY FIXEADO, BORRAR DESPUES PARA ENCONTRAR LA SOLUCION CORRECTA PARA EL PADDING DE LA CONTRASEÑA
+        AlertDialog alertDialog;
+        alertDialog = builder.create();
+        alertDialog.getWindow().setLayout(400, 200); //Controlling width and height.
+        alertDialog.show();
+        */
 
         builder.show();
     }

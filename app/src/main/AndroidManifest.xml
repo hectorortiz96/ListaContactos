@@ -16,15 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
-                  android:hardwareAccelerated="false">
+                  android:hardwareAccelerated="false"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ContactDetails"
-            android:label="@string/title_activity_contact_details"/>
+            android:label="@string/title_activity_contact_details"
+            android:screenOrientation="portrait"/>
         <activity
+            android:screenOrientation="portrait"
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity">
@@ -32,15 +35,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="itesm.mx.listacontactos.MainActivity" />
         </activity>
-        <activity android:name=".PermisosActivity" />
+        <activity android:name=".PermisosActivity"
+                  android:screenOrientation="portrait"/>
         <activity android:name=".AgregarActivity"
-            android:label="@string/title_activity_agregar"/>
+            android:label="@string/title_activity_agregar"
+            android:screenOrientation="portrait"/>
         <activity android:name=".EliminarActivity"
-            android:label="@string/title_activity_eliminar"/>
-        <activity android:name=".EditarActivity" />
-        <activity android:name=".EditarContactoActivity" />
+            android:label="@string/title_activity_eliminar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".EditarActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".EditarContactoActivity"
+                  android:screenOrientation="portrait"/>
         <activity android:name=".ChangePasswordActivity"
-            android:label="@string/title_activity_change_password">
+            android:label="@string/title_activity_change_password"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

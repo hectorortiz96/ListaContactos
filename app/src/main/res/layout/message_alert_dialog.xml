@@ -17,6 +17,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/imageView_Comida"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -51,7 +52,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageView_Policia"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -88,6 +89,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/imageView_Hospital"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -124,6 +126,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/imageView_Tristeza"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
