@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
     String passwordValor;
 
     View myView;
+    Boolean contactosDefault;
 
 //push carlos
 
@@ -107,14 +108,54 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
         }
 
 
-
-
         //Trae la informacion de los contactos (se guardo en forma de un arreglo, la adquiero en forma de un arreglo)
         Gson gson = new Gson();
         String json = sharedPref.getString("Contactos", null);
 
         Type listType = new TypeToken<ArrayList<Contacto>>(){}.getType();
         listaContactos = gson.fromJson(json, listType);
+
+
+        //Añade al arreglo de contactos los siguientes contactos default (haya habido o no haya habido un arreglo
+        //de contactos guardado previamente en memoria)
+        contactosDefault = sharedPref.getBoolean("contactosDefault",false);
+        if (!contactosDefault)
+        {
+
+            Contacto contactoDefault1 = new Contacto(3, "Cruz Roja Monterrey", "83751212", null);
+            //Contacto contactoDefault2 = new Contacto(3, "Cruz Verde", "13523786", null);
+            Contacto contactoDefault3 = new Contacto(3, "Cuerpo de bomberos", "83420053", null);
+            //Contacto contactoDefault4 = new Contacto(3, "Seguridad Publica del Estado", "066", null);
+            //Contacto contactoDefault5 = new Contacto(3, "Policia Ministerial", "20204444", null);
+            //Contacto contactoDefault6 = new Contacto(3, "Policia Federal Preventiva", "83850144", null);
+            Contacto contactoDefault7 = new Contacto(3, "Policia y Transito Monterrey", "83050900", null);
+            Contacto contactoDefault8 = new Contacto(3, "Proteccion Civil del Estado", "83428555", null);
+            //Contacto contactoDefault9 = new Contacto(3, "Seguridad para el Turista", "018009039200", null);
+            Contacto contactoDefault10 = new Contacto(3, "Ejercito Mexicano", "8116472003", null);
+            //Contacto contactoDefault11 = new Contacto(3, "Multimedios Television", "83699973", null);
+
+            listaContactos.add(contactoDefault1);
+            //listaContactos.add(contactoDefault2);
+            listaContactos.add(contactoDefault3);
+            //listaContactos.add(contactoDefault4);
+            //listaContactos.add(contactoDefault5);
+            //listaContactos.add(contactoDefault6);
+            listaContactos.add(contactoDefault7);
+            listaContactos.add(contactoDefault8);
+            //listaContactos.add(contactoDefault9);
+            listaContactos.add(contactoDefault10);
+            //listaContactos.add(contactoDefault11);
+
+            contactosDefault = true;
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean("contactosDefault",contactosDefault);
+            editor.commit();
+
+            Gson gsonSave = new Gson();
+            String jsonSave = gsonSave.toJson(listaContactos);
+            editor.putString("Contactos", jsonSave);
+            editor.commit();
+        }
 
         //Si habia un arreglo de contactos guardado en memoria
         if (listaContactos != null){
