@@ -126,7 +126,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         String headerTitle = (String)getGroup(groupPosition);
         if (groupPosition == 0){
 
-            if (convertView == null) {
+            {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = infalInflater.inflate(R.layout.list_item, null);
 
@@ -134,23 +134,23 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         } else if (groupPosition == 1){
 
-            if (convertView == null) {
+            {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.list_item, null);
+                convertView = infalInflater.inflate(R.layout.list_item2, null);
             }
 
         } else if (groupPosition == 2){
 
-            if (convertView == null) {
+             {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.list_item, null);
+                convertView = infalInflater.inflate(R.layout.list_item3, null);
             }
 
         }  else if (groupPosition == 3){
 
-            if (convertView == null) {
+            {
                 LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                convertView = infalInflater.inflate(R.layout.list_item, null);
+                convertView = infalInflater.inflate(R.layout.list_item4, null);
             }
         }
 

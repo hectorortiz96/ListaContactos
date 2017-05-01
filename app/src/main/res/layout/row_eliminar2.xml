@@ -19,8 +19,9 @@
         android:id="@+id/textView_nombreContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text = "TextWhatevs"
-        android:layout_weight="0.27" />
+        android:layout_weight="0.27"
+        android:text="TextWhatevs"
+        android:textColor="@android:color/black"
+        android:textSize="20dp" />
 
 </LinearLayout>
