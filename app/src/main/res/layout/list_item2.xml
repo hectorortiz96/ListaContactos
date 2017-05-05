@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="55dip"
-    android:background="#afe802"
+    android:background="#a9e100"
     android:orientation="vertical">
 
     <TextView
@@ -12,6 +12,6 @@
         android:layout_height="match_parent"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
         android:textColor="@android:color/black"
-        android:textSize="25sp" />
+        android:textSize="28sp" />
 
 </LinearLayout>
