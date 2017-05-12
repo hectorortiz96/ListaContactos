@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -36,7 +38,7 @@ public class EditarContactoActivity extends AppCompatActivity implements View.On
     EditText etNumero;
     Spinner spCategoria;
     Button btnGuardar;
-    ImageButton ibFoto;
+    ImageView ibFoto;
 
     String nombre;
     String numero;
@@ -60,7 +62,7 @@ public class EditarContactoActivity extends AppCompatActivity implements View.On
         spCategoria = (Spinner) findViewById(R.id.spinner_categoria);
         stringCategorias = getResources().getStringArray(R.array.array_categorias);
         btnGuardar = (Button) findViewById(R.id.button_agregar_contacto);
-        ibFoto = (ImageButton) findViewById(R.id.imageButton);
+        ibFoto = (ImageView) findViewById(R.id.imageButton);
 
         etNombre.setText(contactoElegido.getNombre());
         etNumero.setText(contactoElegido.getNumero());
@@ -82,8 +84,11 @@ public class EditarContactoActivity extends AppCompatActivity implements View.On
                 else if (seleccion.equals("Amigos")){
                     categoria = 1;
                 }
-                else if (seleccion.equals("Servicios de emergencias")) {
+                else if (seleccion.equals("Servicios de Salud")) {
                     categoria = 2;
+                }
+                else if (seleccion.equals("Otros")) {
+                    categoria = 3;
                 }
             }
 

@@ -49,6 +49,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements  View.O
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("password",contrasena);
             editor.commit();
+            Toast.makeText(getApplicationContext(), "Contraseña modificada exitosamente!", Toast.LENGTH_SHORT).show();
             finish();
         }else{
             Toast.makeText(getApplicationContext(), "Los campos no coinciden!", Toast.LENGTH_SHORT).show();

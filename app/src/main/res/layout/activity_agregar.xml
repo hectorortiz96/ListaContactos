@@ -99,7 +99,7 @@
             tools:layout_editor_absoluteX="170dp"
             tools:layout_editor_absoluteY="208dp" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton"
             android:layout_width="150dp"
             android:layout_height="150dp"

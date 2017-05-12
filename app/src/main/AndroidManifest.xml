@@ -61,8 +61,10 @@
             android:label="@string/title_activity_eliminar"
             android:screenOrientation="portrait"/>
         <activity android:name=".EditarActivity"
+                  android:label="@string/title_activity_editar"
                   android:screenOrientation="portrait"/>
         <activity android:name=".EditarContactoActivity"
+                  android:label="@string/title_activity_editarContacto"
                   android:screenOrientation="portrait"/>
         <activity android:name=".ChangePasswordActivity"
             android:label="@string/title_activity_change_password"

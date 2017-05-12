@@ -22,7 +22,7 @@
         tools:layout_editor_absoluteY="441dp" />
 
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/listViewHey"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/button_eliminar"

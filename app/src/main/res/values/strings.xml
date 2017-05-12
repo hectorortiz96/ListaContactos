@@ -5,6 +5,8 @@
     <string name="title_activity_eliminar">Eliminar Contacto</string>
     <string name="title_activity_change_password">Cambiar contraseña</string>
     <string name="title_activity_contact_details">Detalles</string>
+    <string name="title_activity_editar">Seleccion Editar </string>
+    <string name="title_activity_editarContacto">Editar</string>
     <string name="preference_file_key">itesm.mx.listacontactos</string>
     <string name="aceptar">Aceptar</string>
     <string name="confirmar_contrasena">Confirmar Contraseña</string>

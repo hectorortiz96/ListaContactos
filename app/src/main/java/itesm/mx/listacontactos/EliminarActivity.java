@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -20,12 +22,13 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EliminarActivity extends ListActivity implements AdapterView.OnItemClickListener {
+public class EliminarActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     Button btnEliminar;
     ArrayList<Contacto> listaContactos;
     EliminarAdapter adapter;
     ArrayList<Integer> contactosEliminarPos;
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +38,12 @@ public class EliminarActivity extends ListActivity implements AdapterView.OnItem
         listaContactos = (ArrayList<Contacto>)globalListaContactos.getListaContactos();
         contactosEliminarPos = new ArrayList<>();
         adapter = new EliminarAdapter(this, listaContactos);
-        setListAdapter(adapter);
-        getListView().setOnItemClickListener(this);
+
+        listView = (ListView) findViewById(R.id.listViewHey);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
+        //setListAdapter(adapter);
+        //getListView().setOnItemClickListener(this);
 
 
         //getListView().setOnItemClickListener(this);
@@ -91,6 +98,9 @@ public class EliminarActivity extends ListActivity implements AdapterView.OnItem
         };
 
         btnEliminar.setOnClickListener(MyListener);
+
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.);
+        //setSupportActionBar(toolbar);
 
     }
 

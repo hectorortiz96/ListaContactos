@@ -1,5 +1,6 @@
 package itesm.mx.listacontactos;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -40,7 +42,7 @@ public class AgregarActivity extends AppCompatActivity implements AdapterView.On
     Spinner spCategoria;
     String[] stringCategorias;
     Button btnAgregar;
-    ImageButton ibImagen;
+    ImageView ibImagen;
     byte[] imagen;
 
     final int REQUEST_TAKE_PHOTO = 0;
@@ -57,7 +59,7 @@ public class AgregarActivity extends AppCompatActivity implements AdapterView.On
         spCategoria = (Spinner) findViewById(R.id.spinner_categoria);
         stringCategorias = getResources().getStringArray(R.array.array_categorias);
         btnAgregar = (Button) findViewById(R.id.button_agregar_contacto);
-        ibImagen = (ImageButton) findViewById(R.id.imageButton);
+        ibImagen = (ImageView) findViewById(R.id.imageButton);
 
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, stringCategorias); //selected item will look like a spinner set from XML
@@ -83,6 +85,10 @@ public class AgregarActivity extends AppCompatActivity implements AdapterView.On
         btnAgregar.setOnClickListener(MyListener);
         ibImagen.setOnClickListener(MyListener);
 
+
+        //ActionBar actionBar = getActionBar();
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override
@@ -95,9 +101,6 @@ public class AgregarActivity extends AppCompatActivity implements AdapterView.On
         }
         else if (seleccion.equals("Amigos")){
             categoria = 1;
-        }
-        else if (seleccion.equals("Servicios de emergencias")) {
-            categoria = 2;
         }
         else if (seleccion.equals("Servicios de Salud")) {
             categoria = 2;
@@ -187,11 +190,60 @@ public class AgregarActivity extends AppCompatActivity implements AdapterView.On
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                ibImagen.setImageBitmap(selectedImage);
+                //ibImagen.setImageBitmap(selectedImage);
 
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                selectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                imagen = stream.toByteArray();
+                int valorPxl = selectedImage.getByteCount();
+                String valorPxlString = Integer.toString(valorPxl);
+                Log.d("Bitmap a #Bytes: ", valorPxlString);
+
+                if(valorPxl > 1500000)
+                {
+                    Log.d("Bitmap GRANDE: ", "TRUE");
+
+                    int newWidth = selectedImage.getWidth()/10;
+                    int newHeight = selectedImage.getHeight()/10;
+                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(selectedImage, newWidth, newHeight, false);
+
+                    valorPxl = resizedBitmap.getByteCount();
+                    valorPxlString = Integer.toString(valorPxl);
+                    Log.d("BitResized a #Bytes: ", valorPxlString);
+
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    ibImagen.setImageBitmap(resizedBitmap);
+                    resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    //selectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    imagen = stream.toByteArray();
+
+                    Log.d("Bitmap a ByteArray: ", "LISTO");
+                }
+                else
+                {
+                    Log.d("Bitmap PEQUEÑO: ", "TRUE");
+
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    ibImagen.setImageBitmap(selectedImage);
+                    selectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    //selectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    imagen = stream.toByteArray();
+                    Log.d("Bitmap a ByteArray: ", "LISTO");
+                }
+
+
+                /*
+                while (valorPxl > Max)
+                {
+                     newWidth = newWidth/2;
+                     newHeight = newHeight/2;
+                     resizedBitmap = Bitmap.createScaledBitmap(selectedImage, newWidth, newHeight, false);
+                     valorPxl = resizedBitmap.getByteCount();
+                    valorPxlString = Integer.toString(valorPxl);
+                     Log.d("BitMap2 a #Bytes: ", valorPxlString);
+                }*/
+
+
+
+
+
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
