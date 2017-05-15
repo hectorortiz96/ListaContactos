@@ -210,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements ExpandableListVie
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (data != null){
 
             Boolean agregado = data.getBooleanExtra("agregado",false);

@@ -149,6 +149,10 @@ public class EditarContactoActivity extends AppCompatActivity implements View.On
                     editor.putString("Contactos", json);
                     editor.commit();
 
+                    Intent intent = new Intent();
+                    //intent.putExtra("Agregado",true);
+                    setResult(RESULT_OK, intent);
+                    intent.putExtra("SeEdito",true);
 
                     Toast.makeText(getApplicationContext(), "Modificaste al contacto!", Toast.LENGTH_SHORT).show();
                     finish();
